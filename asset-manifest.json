@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FEWT-Mini-project-/static/css/main.9c6c4ec5.css",
+    "main.js": "/FEWT-Mini-project-/static/js/main.37e46d0a.js",
+    "static/js/453.825386d9.chunk.js": "/FEWT-Mini-project-/static/js/453.825386d9.chunk.js",
+    "index.html": "/FEWT-Mini-project-/index.html",
+    "main.9c6c4ec5.css.map": "/FEWT-Mini-project-/static/css/main.9c6c4ec5.css.map",
+    "main.37e46d0a.js.map": "/FEWT-Mini-project-/static/js/main.37e46d0a.js.map",
+    "453.825386d9.chunk.js.map": "/FEWT-Mini-project-/static/js/453.825386d9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c6c4ec5.css",
+    "static/js/main.37e46d0a.js"
+  ]
+}
