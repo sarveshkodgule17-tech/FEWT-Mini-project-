@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../services/api";
+import { getProfile, saveProfile } from "../services/profileService";
 import "../styles/profile.css";
 
 function Profile() {
@@ -12,8 +12,8 @@ function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await API.get("/profile");
-        setUser(res.data);
+        const data = await getProfile();
+        setUser(data);
       } catch (err) {
         console.error(err);
       } finally {
@@ -27,7 +27,7 @@ function Profile() {
     setSaving(true);
     setMessage("");
     try {
-      await API.put("/profile", { 
+      await saveProfile({ 
         targetRole: user.targetRole, 
         skills: user.skills 
       });

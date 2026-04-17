@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../services/api";
+import { recommendCareers } from "../services/recommendationService";
 import { useNavigate } from "react-router-dom";
 import "../styles/skills.css";
 
@@ -23,8 +23,8 @@ function Skills() {
     setLoading(true);
     try {
       const skillArray = skills.split(",").map(s => s.trim()).filter(Boolean);
-      const res = await API.post("/recommend-career", { skills: skillArray });
-      localStorage.setItem("recommendedCareers", JSON.stringify(res.data.recommendedCareers));
+      const data = await recommendCareers(skillArray);
+      localStorage.setItem("recommendedCareers", JSON.stringify(data.recommendedCareers));
       navigate("/recommendation");
     } catch (err) {
       setError("Failed to get recommendations. Please try again.");

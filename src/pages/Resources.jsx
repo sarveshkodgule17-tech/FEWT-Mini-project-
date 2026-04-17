@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import API from "../services/api";
+import { getDashboard } from "../services/dashboardService";
+import { getResourcesForSkills } from "../services/resourcesService";
 import "../styles/resources.css";
 
 function Resources() {
@@ -11,8 +12,8 @@ function Resources() {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const res = await API.get("/dashboard");
-        setMissingSkills(res.data.remainingSkills || []);
+        const data = await getDashboard();
+        setMissingSkills(data.remainingSkills || []);
       } catch (err) {
         console.error(err);
       }
@@ -28,8 +29,8 @@ function Resources() {
     setError("");
     setLoading(true);
     try {
-      const res = await API.post("/get-resources", { skills: missingSkills });
-      setResources(res.data.resources);
+      const data = await getResourcesForSkills(missingSkills);
+      setResources(data.resources);
     } catch (err) {
       setError("Failed to suggest resources. Please try again.");
     } finally {

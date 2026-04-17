@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../services/api";
+import { generateInterviewQuestions } from "../services/interviewService";
 import "../styles/interview.css";
 
 function InterviewPrep() {
@@ -13,8 +13,8 @@ function InterviewPrep() {
     setError("");
     setLoading(true);
     try {
-      const res = await API.post("/generate-interview", { roleName });
-      setQuestions(res.data.questions);
+      const data = await generateInterviewQuestions({ roleName });
+      setQuestions(data.questions);
     } catch (err) {
       setError("Failed to generate questions. Please try again.");
     } finally {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../services/api";
+import { generateRoadmap as genRoadmap } from "../services/roadmapService";
 import "../styles/roadmap.css";
 
 function Roadmap() {
@@ -13,12 +13,12 @@ function Roadmap() {
     setError("");
     setLoading(true);
     try {
-      const res = await API.post("/generate-roadmap", {
+      const data = await genRoadmap({
         roleName,
         missingSkills: ["Machine Learning", "Statistics"]
       });
       // API returns a string from OpenAI, display it directly
-      setRoadmap(res.data.roadmap);
+      setRoadmap(data.roadmap);
     } catch (err) {
       setError("Failed to generate roadmap. Please check your connection and try again.");
     } finally {

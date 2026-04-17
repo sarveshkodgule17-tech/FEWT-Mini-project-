@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import API from "../services/api";
+import { getDashboard } from "../services/dashboardService";
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -9,8 +9,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const res = await API.get("/dashboard");
-        setData(res.data);
+        const data = await getDashboard();
+        setData(data);
       } catch (err) {
         setError("Failed to load dashboard. Please try again.");
         console.error(err);

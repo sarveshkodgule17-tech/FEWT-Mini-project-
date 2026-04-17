@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../services/api";
+import { login } from "../services/authService";
 import "../styles/login.css";
 
 function Login() {
@@ -18,11 +18,11 @@ function Login() {
     }
     setLoading(true);
     try {
-      const res = await API.post("/login", { email, password });
-      localStorage.setItem("token", res.data.token);
+      const res = await login({ email, password });
+      localStorage.setItem("token", res.token);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed. Please try again.");
+      setError(err.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../services/api";
+import { register } from "../services/authService";
 import "../styles/register.css";
 
 function Register() {
@@ -25,11 +25,11 @@ function Register() {
     }
     setLoading(true);
     try {
-      await API.post("/register", { name, email, password });
+      await register({ name, email, password });
       setSuccess("Account created! Redirecting to login...");
       setTimeout(() => navigate("/"), 1500);
     } catch (err) {
-      setError(err.response?.data?.message || "Registration failed. Please try again.");
+      setError(err.message || "Registration failed. Please try again.");
     } finally {
       setLoading(false);
     }
