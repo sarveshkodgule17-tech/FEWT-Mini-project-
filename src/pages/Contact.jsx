@@ -8,7 +8,6 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Simulate form submission
-    console.log("Form submitted:", formData);
     setSuccess(true);
     setFormData({ name: "", email: "", message: "" });
   };
